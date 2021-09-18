@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PhoneBook.Models;
 
 namespace PhoneBook
 {
@@ -26,6 +27,8 @@ namespace PhoneBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //registered new service
+            services.AddSingleton<IPhonebookRepository, PhonebookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,11 +39,11 @@ namespace PhoneBook
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
